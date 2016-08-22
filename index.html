@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cookie Crumble</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id = "center">
+		<h1>Cookie Crumble</h1>
+		<h2>Select cookies. You know what to do. Each cookie is 87 cents.</h2>
+
+
+		<!-- COOKIE BUTTONS -->
+		<div class = "amounts">
+			<div class="cookiebutton" id="sugardiv">Sugar</div>
+			<h2 id="sugarcount">0</h2>
+
+			<div class="cookiebutton" id="chocolatediv">Chocolate</div>
+			<h2 id="chocolatecount">0</h2>
+
+			<div class="cookiebutton" id="lemondiv">Lemon</div>
+			<h2 id="lemoncount">0</h2>
+
+			<h1 id="totalcount">0</h1>
+
+			<div id="checkout">Checkout</div>
+
+		</div>
+			</div>
+		
+		<script src="cookies.js"></script>
+		<script src="jquery-3.1.0.min.js"></script>
+		<script src="pluralize.js"></script>
+      <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+		<script>
+
+			var sugarCookieCount = Cookies.get("sugar");
+			var chocolateCookieCount = Cookies.get("chocolate");
+			var lemonCookieCount = Cookies.get("lemon");
+
+			//Start with 0 cookies
+			if (sugarCookieCount == null && chocolateCookieCount == null && lemonCookieCount == null) {
+				Cookies.set("sugar", "0");
+				Cookies.set("chocolate", "0");
+				Cookies.set("lemon", "0");
+				var totalcookie_value = 0
+			};
+
+			//Total cookie count
+			$(document).ready(function(){
+				function total(){
+			    	var totalcookie_value = (parseInt(sugarCookieCount) + parseInt(chocolateCookieCount) + parseInt(lemonCookieCount)).toString(); 
+					if(totalcookie_value == 1){
+						$("#totalcount").html(totalcookie_value + " Total Cookies")
+					} else {
+						$("#totalcount").html(totalcookie_value + " Total Cookies") 
+					};
+				};   
+
+				//Click functions below
+			    $("#sugardiv").on("click",function(){
+			    	$( "#sugardiv" ).effect( "shake", {times:3, distance:5, direction:"up"},300);
+			        sugarCookieCount++; //++ adds 1
+			        Cookies.set("sugar",sugarCookieCount);
+			        $("#sugarcount").html(sugarCookieCount + pluralize(" sugar", sugarCookieCount));
+			        total();
+			    });
+
+			    $("#chocolatediv").on("click",function(){
+			    	$( "#chocolatediv" ).effect( "shake", {times:3, distance:5, direction:"up"},300);
+			        chocolateCookieCount++;
+			        Cookies.set("chocolate", chocolateCookieCount);
+			        // alert("Delicioso chocolate!")
+					$("#chocolatecount").html(chocolateCookieCount + pluralize(" chocolate", chocolateCookieCount));
+			        total();
+			    });
+
+			    $("#lemondiv").on("click",function(){
+			    	$( "#lemondiv" ).effect( "shake", {times:3, distance:5, direction:"up"},300);
+			        lemonCookieCount++;
+			        Cookies.set("lemon",lemonCookieCount);
+			        // alert("Delicoso limon!")
+					$("#lemoncount").html(lemonCookieCount + pluralize(" lemon", lemonCookieCount));
+			        total();
+			    });
+
+			    //Change cookie count to 0
+			    $("#checkout").on("click",function(){
+			    	var totalcookie_value = (parseInt(sugarCookieCount) + parseInt(chocolateCookieCount) + parseInt(lemonCookieCount)).toString()
+			    	if (totalcookie_value == 1) {
+			    		var check = confirm("Are you sure you would like to buy 1 cookie?");
+			    	} else if (totalcookie_value == 0) {
+			    		alert("Choose a cookie first.");
+			    	} else {
+			    		var check = confirm("Are you sure you would like to buy " + totalcookie_value + " cookies?");
+			    	};
+				    	if (check == true) {
+					    	alert("Your total is " + "$" + (parseInt(totalcookie_value)*0.87).toFixed(2) + ". Thanks for playing!") //toFixed(#) rounds number to #'s decimal place
+					    	sugarCookieCount = 0;
+					    	chocolateCookieCount = 0;
+					    	lemonCookieCount = 0;
+					    	Cookies.set("sugar", "0");
+					    	Cookies.set("lemon", "0");
+					    	Cookies.set("chocolate", "0");
+					    	$("#sugarcount").html("0 sugars");
+					    	$("#chocolatecount").html("0 chocolates");
+					    	$("#lemoncount").html("0 lemons");
+					    	$("#totalcount").html("0 Total Cookies");
+				   		}; 
+				});
+			});
+
+			//Store cookie count
+			var sugarCookieCount = Cookies.get("sugar");
+			var chocolateCookieCount = Cookies.get("chocolate");
+			var lemonCookieCount = Cookies.get("lemon");
+			var totalcookie_value = (parseInt(sugarCookieCount) + parseInt(chocolateCookieCount) + parseInt(lemonCookieCount)).toString();
+
+				if(sugarCookieCount == 1){
+			        document.getElementById("sugarcount").innerHTML = sugarCookieCount + " sugar"
+			    } else {
+			        document.getElementById("sugarcount").innerHTML = sugarCookieCount + " sugars"
+			    };
+
+				if(chocolateCookieCount == 1){
+			        document.getElementById("chocolatecount").innerHTML = chocolateCookieCount + " chocolate"
+			    } else {
+			        document.getElementById("chocolatecount").innerHTML = chocolateCookieCount + " chocolates"
+			    };
+
+				if(lemonCookieCount == 1){
+			        document.getElementById("lemoncount").innerHTML = lemonCookieCount + " lemon"
+			    } else {
+			        document.getElementById("lemoncount").innerHTML = lemonCookieCount + " lemons"
+			    };
+				
+				if(totalcookie_value == 1){
+					document.getElementById("totalcount").innerHTML = totalcookie_value + " Total Cookies"
+				} else {
+					document.getElementById("totalcount").innerHTML = totalcookie_value + " Total Cookies"
+				};
+
+		</script>
+	</body>
+</html>

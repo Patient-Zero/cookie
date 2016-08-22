@@ -1,0 +1,65 @@
+html {
+	background: url("writeoffback.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Arial';
+}
+
+#center {
+	text-align: center;
+}
+
+h1 {
+	color: white;
+}
+
+h2 {
+	color: white;
+}
+
+.cookiebutton {
+	height: 80px;
+	width: 140px;
+	padding-top: 50px;
+	border: 1px solid orange;
+	border-radius: 50%;
+}
+
+.amounts {
+	float: center;
+}
+
+#sugardiv {
+	background-color: white;
+	color: black;
+}
+
+#chocolatediv {
+	background-color: #CC7C20;
+	color: black;
+}
+
+#lemondiv {
+	background-color: #FFC928;
+	color: black;
+}
+
+#checkout {
+	background-color: #DFCC74;
+	font-color: white;
+	height: 40px;
+	width: 320px;
+	text-align: center;
+	vertical-align: center;
+	padding-top: 20px;
+	text-shadow: 1px 1px gray;
+	bottom: 20px;
+}
+
+#totalcount {
+	display: inline-block;
+	text-align: center;
+}
+
